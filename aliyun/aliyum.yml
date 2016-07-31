@@ -1,0 +1,13 @@
+---
+- hosts: aliyun
+  remote_user: root
+  sudo: yes
+  tasks:
+    - name: Update OS
+      yum: name=* state=latest
+    - name: Install docker
+      shell: curl -sSL https://get.docker.com/ | sh  
+    - name: Enable docker
+      service: name=docker enabled=yes
+    - name: start docker
+      service: name=docker state=started  
